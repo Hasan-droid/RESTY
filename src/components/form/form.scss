@@ -17,8 +17,11 @@ form {
         padding: .25rem .5rem;
         background: #ccc;
 
-        &:hover, &.active {
-          background: #fff;
+        &:hover, &:active {
+          background: rgb(112, 10, 10);
+        }
+        &:focus-visible{
+          background: rgb(61, 5, 107);
         }
       }
     }
