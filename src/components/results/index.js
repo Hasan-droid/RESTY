@@ -16,7 +16,8 @@ function Results(props){
     return(
         <>
         <section>
-         <pre>{props.data ? JSON.stringify(props.data, undefined, 2) : null}</pre>
+         <h2 style={{color:'red' , textDecoration:'underline'}}>{props.data ? "results" : null}</h2>   
+         <pre>{props.data ? JSON.stringify(props.data.data, undefined, 2) : null}</pre>
       </section>
       </>
     )
