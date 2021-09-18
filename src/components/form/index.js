@@ -3,48 +3,21 @@ import React, { useState } from 'react';
 
 import './form.scss';
 
-// class Form extends React.Component {
 
-//   handleSubmit = e => {
-//     e.preventDefault();
-//     const formData = {
-//       method:'GET',
-//       url: 'https://pokeapi.co/api/v2/pokemon',
-//     };
-//     this.props.handleApiCall(formData);
-//   }
-
-//   render() {
-//     return (
-//       <>
-//         <form onSubmit={this.handleSubmit}>
-//           <label >
-//             <span>URL: </span>
-//             <input name='url' type='text' />
-//             <button type="submit">GO!</button>
-//           </label>
-//           <label className="methods">
-//             <span id="get">GET</span>
-//             <span id="post">POST</span>
-//             <span id="put">PUT</span>
-//             <span id="delete">DELETE</span>
-//           </label>
-//         </form>
-//       </>
-//     );
-//   }
-// }
 
 function Form(props){
   let [TextArea , setTextArea]=useState(false);
   let [methodType , setMethodType]=useState("get")
   let [URL , setUrl]=useState("")
+  let [body , setBody]=("")
 
   let  handleSubmit = e => {
         e.preventDefault();
+        
         const formData = {
           method:methodType,
           url:URL,
+          body
         };
         props.handleApiCall(formData);
       }
@@ -58,7 +31,7 @@ function Form(props){
       
       const handleGet=(e)=>{
         e.preventDefault();
-        methodType=e.target.id;
+        setMethodType( e.target.id);
         setTextArea(false);
       }
 
@@ -73,7 +46,14 @@ function Form(props){
       }
 
       const handleURL=(e)=>{
-           setUrl(e.target.value)
+        console.log("e.target.value" , e.target.value)
+        if(e.target.value )
+          return setUrl(e.target.value)
+          return setUrl("")
+      }
+
+      const handleBody=(e)=>{
+         setBody(e.target.value)
       }
 
       return (
@@ -87,8 +67,8 @@ function Form(props){
             </label>
             <label className="methods">
               <span id="get" onClick={handleGet}>GET</span>
-              <span id="post" onClick={handlePost}>POST</span>
-              <span id="put" onClick={handlePut}>PUT</span>
+              <span id="post" onClick={handlePost} onChange={handleBody}>POST</span>
+              <span id="put" onClick={handlePut}  onChange={handleBody}>PUT</span>
               <span id="delete" onClick={handleDelete}>DELETE</span>
             </label>
             {
